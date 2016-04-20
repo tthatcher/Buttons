@@ -906,21 +906,11 @@ DataTable.ext.buttons.pdfHtml5 = {
 			pdf.open();
 		}
 		else {
-				pdf.getBuffer(function(buffer) {
-					try {
-						var blob = new Blob([buffer], {
-							type: 'application/pdf'
-						});
-					} catch (e) {
-						if (e.name == "InvalidStateError") {
-							var byteArray = new Uint8Array(buffer);
-							blob = new Blob([byteArray.buffer], {
-								type: 'application/pdf'
-							});
-						}
-					}
-					_saveAs(blob, _filename(config));
-				} );
+			pdf.getBuffer( function (buffer) {
+				var blob = new Blob( [buffer], {type:'application/pdf'} );
+
+				_saveAs( blob, _filename( config ) );
+			} );
 		}
 	},
 
